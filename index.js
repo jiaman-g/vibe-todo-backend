@@ -24,6 +24,10 @@ app.use("/todos", todoRouter);
 
 const startServer = async () => {
   try {
+    if (!MONGO_URI) {
+      throw new Error("MONGO_URI 환경변수가 설정되지 않았습니다.");
+    }
+
     await mongoose.connect(MONGO_URI);
     console.log("연결 성공");
 
